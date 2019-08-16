@@ -24,8 +24,8 @@ pipeline {
             powershell 'cd "C:/Jenkins/workspace"; Compress-Archive .NetProjectCI build_artifacts.zip'
             bat 'cd.. & aws s3 cp build_artifacts.zip s3://jenkins-artifacts-essentials-proj/'
             echo 'Cleaning artifacts...'
-            bat 'rmdir .NetProjectCI'
-            bat 'del build_artifacts.zip'
+            bat 'cd.. & rmdir .NetProjectCI & del build_artifacts.zip'
+            echo 'Successfully cleared artifacts!'
         }
         failure {
             echo 'Build Failed!!! Aborting further pipeline.'
