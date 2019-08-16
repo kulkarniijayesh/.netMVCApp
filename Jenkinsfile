@@ -10,8 +10,10 @@ pipeline {
         
         stage('Build') {
             steps {
-                 echo 'Building..'
-                 bat 'dir'
+                     echo 'Building..'
+                     bat 'cd'
+                     bat 'nuget restore'
+                     bat 'msbuild'
             }
         }
     }
